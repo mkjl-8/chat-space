@@ -10,8 +10,8 @@ Column|Type|Options|
 
 ### Association
 - has_many :groups_users
-- has_many :group,through::groups_users
-- has_many :comment
+- has_many :groups,through::groups_users
+- has_many :comments
 
 ## groupテーブル
 
@@ -21,8 +21,8 @@ Column|Type|Options|
 
 ### Association
 - has_many :groups_users
-- has_many :user,through::groups_users
-- has_many :comment
+- has_many :users,through::groups_users
+- has_many :comments
 
 ## commentテーブル
 
@@ -35,7 +35,7 @@ Column|Type|Options|
 
 ### Association
 - belongs_to :user
-- has_many :group
+- belons_to :group
 
 ## groups_usersテーブル
 
@@ -45,5 +45,5 @@ Column|Type|Options|
 |group_id|integer|null: false, foreign_key: true|
 
 ### Association
-- belongs_to :group
 - belongs_to :user
+- belongs_to :group
