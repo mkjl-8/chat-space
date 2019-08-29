@@ -1,0 +1,129 @@
+.sidebar{
+  height: 100vh;
+  width: 300px;
+  background-color: #2f3e51;
+  float: left;
+  &__header-box{
+    justify-content: space-between;
+    align-items: center;
+    height: 100px;
+    display: flex;
+    // _variable.scssから変数を読み込む。
+    padding: 0 20px;
+    background-color: #253141;
+    &--name{
+      font-size: 16px;
+      font-weight: bold;
+      color: #ffffff;
+      float: left;
+    }
+    &__menu{
+      display: flex;
+      color: #fff;
+      font-size: 16px;
+      float: right;
+    }
+  }
+  &__groups{
+    height: calc(100vh - 140px);
+    padding: 20px;
+    &__group-box{
+      margin-bottom: 40px;
+      &--name{
+      font-size: 15px;
+      font-weight: bold;
+      color: #ffffff;
+      margin-bottom: 5px;
+      }
+      &--text{
+      font-size: 11px;
+      font-weight: bold;
+      color: #ffffff;
+      }
+    }
+  }
+}
+.main{
+  // 高さを指定することでfloatによって、次の要素が入り込むことを防ぐ
+  height: 100vh;
+  // 横幅はサイドバー300pxを引いた横幅にする
+  width: calc(100% - 300px);
+  float: right;
+  background-color: #fafafa;
+  position: relative;
+  &__header{
+    height: 100px;
+    padding: $main-bar;
+    border-bottom: solid 1px #eee;
+    &__left-box{
+      float: left;
+      &--group-name{
+        margin-top:35px;
+        font-size: 20px;
+        color: #333333;
+      }
+      &--member{
+        margin-top: 15px;
+        font-size: 12px;
+        color: #999999;
+      }
+    }
+    &--edit-btn{
+      height: 40px;
+      float: right;
+      color: #38aef0;
+      // border: 太さ スタイル 色
+      border: 1px solid #38aef0;
+      line-height: 40px;
+      margin-top: 30px;
+      padding: 0 20px;
+    }
+  }
+  &__messages{
+    height: calc(100vh-190px);
+    padding: 46px 40px 0px 40px;
+    &__message{
+      &--upper-info{
+        margin-bottom: 10px;
+      }
+      &--text{
+      }
+    }
+  }
+  &__form{
+    height: 90px;
+    width: 100%;
+    background-color: #dddddd;
+    position: absolute;
+    bottom: 0;
+    &__message{
+      margin: 20px 40px;
+      &__input-box{
+        background-color: #fafafa;
+        width: calc(100% - 130px);
+        position: relative;
+        height: 50px;
+        &--img{
+          font-size: 16px;
+          position: absolute;
+          bottom: 30px;
+          right: 200px;
+          #upload-icon{
+            display: none;
+          }
+        }
+      }
+    &--submit{
+          position: absolute;
+          bottom: 15px;
+          right: 40px;
+          font-size:18px;
+          line-height: 55px;
+          padding: 0 30px;
+          background-color: #38aef0;
+          color: #fafafa;
+      }
+    } 
+  }
+}
+
