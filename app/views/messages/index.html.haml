@@ -1,45 +1,41 @@
-.wrapper
-  .sidebar
-    .sidebar__header-box
-      .sidebar__header-box--name
-        = current_user.name
-        User name
-      .sidebar__header-box__menu
-        .sidebar__header-box__menu__new-group
-          = link_to new_group_path do
-            = fa_icon 'edit'
-        .sidebar__header-box__menu__edit-user
-          = link_to edit_user_path(current_user) do
-            = fa_icon 'cog'
-    .sidebar__groups
-      .sidebar__groups__group-box
-        .sidebar__groups__group-box--name
-          sample-group
-        .sidebar__groups__group-box--text
-          hello
-  .main
-    .main__header
-      .main__header__left-box
-        .main__header__left-box--group-name
-          test
-        .main__header__left-box--member
-          test
-      .main__header--edit-btn
-        Edit
-    .main__messages
-      .main__messages__message
-        .main__messages__message--upper-info
-          test user
-        .main__messages__message--text
-          こんにちは！
-    .main__form
-      .main__form__message
-        %input{placeholder: "type a message", type: "text", class: "main__form__message__input-box"}
-          .main__form__message__input-box--img
-            %label.upload-label{for: "upload-icon"}
-              %i.fa.fa-picture-o
-              %input{name: "image", type: "file", id: "upload-icon"}
-        .main__form__message--submit
-          send
+.sidebar
+  .sidebar__header-box
+    .sidebar__header-box--name
+      User name
+    .sidebar__header-box__menu
+      .sidebar__header-box__menu__new-group
+        = fa_icon 'edit'
+      .sidebar__header-box__menu__edit-user
+        = fa_icon 'cog'
+  .sidebar__groups
+    .sidebar__groups__group-box
+      .sidebar__groups__group-box--name
+        sample-group
+      .sidebar__groups__group-box--text
+        hello
+.main
+  .main__header
+    .main__header__left-box
+      .main__header__left-box--group-name
+        test
+      .main__header__left-box--member
+        test
+    .main__header--edit-btn
+      Edit
+  .main__messages
+    .main__messages__message
+      .main__messages__message--upper-info
+        test user
+      .main__messages__message--text
+        こんにちは！
+  .main__form
+    .main__form__message
+      %input{placeholder: "type a message", type: "text", class: "main__form__message__input-box"}
+        .main__form__message__input-box--img
+          %label.upload-label{for: "upload-icon"}
+            %i.fa.fa-picture-o
+            %input{name: "image", type: "file", id: "upload-icon"}
+      .main__form__message--submit
+        send
 
 
