@@ -27,19 +27,14 @@
       .main__header--edit-btn
         Edit
     .main__messages
-      .main__messages__message
-        .main__messages__message--upper-info
-          test user
-        .main__messages__message--text
-          こんにちは！
+      = render @messages
     .main__form
-      .main__form__message
-        %input{placeholder: "type a message", type: "text", class: "main__form__message__input-box"}
-          .main__form__message__input-box--img
-            %label.upload-label{for: "upload-icon"}
-              %i.fa.fa-picture-o
-              %input{name: "image", type: "file", id: "upload-icon"}
-        .main__form__message--submit
-          send
+      = form_for [@group, @message] do |f|
+        = f.text_field :content, class: 'main__form__message', placeholder: 'type a message'
+        = f.label :image, class: 'main__form__message--img' do
+          = fa_icon 'picture-o', class: 'icon'
+          = f.file_field :image, class: 'hidden'
+        = f.submit 'Send', class: 'main__form__message--submit'
+
 
 
