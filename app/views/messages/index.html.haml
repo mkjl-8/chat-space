@@ -4,9 +4,10 @@
     .main__header
       .main__header__left-box
         .main__header__left-box--group-name
-          test
+          = @group.name
         .main__header__left-box--member
-          test
+          - @group.users.each do |group_user|
+            = group_user.name
       .main__header--edit-btn
         Edit
     .main__messages
