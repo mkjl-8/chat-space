@@ -21,14 +21,11 @@ $(function(){
   $(document).on('click', '.user-search-add', function(){ 
     var name = $(this).data("user-name")
     var id = $(this).data("user-id")
-    console.log(name)
-    console.log(id)
     $(this).parent().remove();
     appendErrMsgToHTML(name,id)
   }); 
 
   $(document).on('click', '.user-search-remove', function(){ 
-    console.log($(this).data())
     var name = $(this).data("user-name")
     var id = $(this).data("user-id")
     $(this).parent().remove();
@@ -37,7 +34,6 @@ $(function(){
 
   $("#user-search-field").on("keyup", function() {
     var input = $("#user-search-field").val();
-    console.log(input)
 
     $.ajax({
       type: 'GET',
@@ -46,7 +42,6 @@ $(function(){
       dataType: 'json'
     })
     .done(function(users){
-      console.log(users)
       $("").empty();
       if (users.length !== 0) {
         users.forEach(function(user){
@@ -55,9 +50,6 @@ $(function(){
       }else {
         appendErrMsgToHTML("ユーザーが見つかりません");
       }
-      // .fail(function(){
-      //   alert('error');
-      // })
     });
   });
 });
