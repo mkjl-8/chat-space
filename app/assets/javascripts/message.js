@@ -1,45 +1,27 @@
 $(function(){
 
-  function buildHTML(message){
-    if ( message.image ) {
-      var html =
-      `<div class="message" data-message-id=${message.id}>
-          <div class="upper-message">
-            <div class="upper-message__user-name">
-              ${message.user_name}
-            </div>
-            <div class="upper-message__date">
-              ${message.date}
-            </div>
-          </div>
-          <div class="lower-message">
-            <p class="lower-message__content">
-              ${message.content}
-            </p>
-          </div>
-          <img src=${message.image} >
-        </div>`
-      return html;
-    } else {
-      var html =
-      `<div class="message" data-message-id=${message.id}>
-          <div class="upper-message">
-            <div class="upper-message__user-name">
-              ${message.user_name}
-            </div>
-            <div class="upper-message__date">
-              ${message.date}
-            </div>
-          </div>
-          <div class="lower-message">
-            <p class="lower-message__content">
-              ${message.content}
-            </p>
-          </div>
-        </div>`
-      return html;
-    };
-  }
+  var buildHTML = function(message) {
+    var image = (message.image) ? `<img src= ${message.image.url}  class="lower-message__image" >`:``
+    var content =(message.content) ?  `<p class= "lower-message__content"> ${message.content}</p>` : ``
+
+    //data-idが反映されるようにしている
+    var html = `<div class="message" data-id= ${message.id} >
+      <div class="upper-message">
+        <div class="upper-message__user-name">
+          ${message.user_name}
+        </div>
+        <div class="upper-message__date">
+          ${message.created_at}
+        </div>
+      </div>
+      <div class="lower-message">
+        ${content}
+        ${image}
+      </div>
+    </div>`
+    
+    return html;
+  };
   $('#new_message').on('submit', function(e){
     e.preventDefault();
     var formData = new FormData(this);
@@ -63,4 +45,35 @@ $(function(){
       });
       return false;
   });
+
+  var reloadMessages = function() {
+    if (window.location.href.match(/\/groups\/\d+\/messages/)){
+      //カスタムデータ属性を利用し、ブラウザに表示されている最新メッセージのidを取得
+      var last_message_id =  $('.message').last().data("id");
+      
+      $.ajax({
+        url: 'api/messages',
+        type: 'GET',
+        dataType: 'json',
+        data: {id: last_message_id}
+      })
+      .done(function(messages) {
+        //追加するHTMLの入れ物を作る
+        var insertHTML = '';
+        //配列messagesの中身一つ一つを取り出し、HTMLに変換したものを入れ物に足し合わせる
+        messages.forEach(function(message){
+          console.log(message)
+          //メッセージが入ったHTMLを取得
+          insertHTML = buildHTML(message)
+          //メッセージを追加
+          $('.main__messages').append(insertHTML);
+          $('.main__messages').animate({scrollTop: $('.main__messages')[0].scrollHeight}, 'fast');   
+        })
+      })
+      .fail(function() {
+        console.log('error');
+      })
+    }
+  };
+  setInterval(reloadMessages, 5000);
 });
