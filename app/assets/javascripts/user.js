@@ -17,6 +17,13 @@ $(function(){
             </div>`;
             $('#user-search-member').append(html);
   }
+  function ErrMsgToHTML(rmg){
+    var html = 
+                `<div class="chat-group-user clearfix">
+                  <p class="chat-group-user__name">${rmg}</p>
+                </div>`;
+              $('#user-search-result').append(html);
+  }
 
   $(document).on('click', '.user-search-add', function(){ 
     var name = $(this).data("user-name")
@@ -47,9 +54,13 @@ $(function(){
         users.forEach(function(user){
           appendUser(user.name, user.id);
         });
-      }else {
-        appendErrMsgToHTML("ユーザーが見つかりません");
       }
+      else {
+        ErrMsgToHTML("ユーザーが見つかりません");
+      }
+    })
+    .fail(function(){
+      alert('error');
     });
   });
 });
