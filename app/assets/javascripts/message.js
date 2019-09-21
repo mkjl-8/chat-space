@@ -1,7 +1,7 @@
 $(function(){
 
   var buildHTML = function(message) {
-    var image = message.image ? `<img src= ${message.image.url}  class="lower-message__image" >`:"";
+    var image = message.image.url ? `<img src= ${message.image.url}  class="lower-message__image" >`:"";
     var content = message.content ?  `<p class= "lower-message__content"> ${message.content}</p>` :"";
 
     //data-idが反映されるようにしてい
